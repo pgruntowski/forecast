@@ -416,3 +416,15 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+#Docker ignore
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/*.user
+**/*.swp
+**/*.suo
+**/*.csproj.user
+secrets.json
+.env
