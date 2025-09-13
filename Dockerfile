@@ -5,8 +5,8 @@ WORKDIR /src
 # pliki globalne (jeœli masz) – bezpiecznie, pominie jeœli brak
 #COPY Directory.Packages.props Directory.Build.props Directory.Build.targets NuGet.config Trecom.sln* . 2>/dev/null || true
 
-COPY Trecom.Backend/Trecom.Backend.csproj Trecom.Backend/
-RUN dotnet restore Trecom.Backend/Trecom.Backend.csproj -v m
+COPY Trecom.Backend.csproj
+RUN dotnet restore Trecom.Backend.csproj -v m
 
 COPY . .
 WORKDIR /src/Trecom.Backend

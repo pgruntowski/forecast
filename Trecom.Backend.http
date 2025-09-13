@@ -1,4 +1,4 @@
-@Trecom.Backend_HostAddress = http://localhost:5049
+@Trecom.Backend_HostAddress = http://localhost:8080
 
 GET {{Trecom.Backend_HostAddress}}/weatherforecast/
 Accept: application/json
