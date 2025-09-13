@@ -1,45 +1,12 @@
-# Git – wyrzuć całe repo, zostaw same .gitignore
 **/.git/
 !**/.gitignore
-
-# Śmieci systemowe
-**/.DS_Store
-**/Thumbs.db
-
-# .NET/IDE
 **/bin/
 **/obj/
-**/artifacts/
 **/.vs/
 **/.vscode/
-**/.idea/
-**/*.user
-**/*.suo
-**/*.cache
-**/*.dbmdl
-**/.toolstarget
-**/*.jfm
-
-# Testy / coverage
-**/TestResults/
-**/coverage/
-**/.coverage
-**/.coverage.*
-
-# Node (jeśli masz front)
 **/node_modules
-**/npm-debug.log
-
-# Inne duże / zbędne w obrazie
-**/charts
-
-# Lokalne sekrety/konfiguracje
 **/.env
 **/secrets*.json
-**/secrets*.yaml
 **/secrets*.yml
-# **/appsettings.*.local.json  (odkomentuj, jeśli używasz lokalnych)
-
-# Repo pliki, których nie potrzebujesz w obrazie
 LICENSE
 README.md
