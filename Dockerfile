@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 # pliki globalne (jeœli masz) – bezpiecznie, pominie jeœli brak
-COPY Directory.Packages.props Directory.Build.props Directory.Build.targets NuGet.config Trecom.sln* . 2>/dev/null || true
+#COPY Directory.Packages.props Directory.Build.props Directory.Build.targets NuGet.config Trecom.sln* . 2>/dev/null || true
 
 COPY Trecom.Backend/Trecom.Backend.csproj Trecom.Backend/
 RUN dotnet restore Trecom.Backend/Trecom.Backend.csproj -v m
