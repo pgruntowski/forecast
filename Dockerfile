@@ -1,21 +1,21 @@
-# syntax=docker/dockerfile:1
+# syntax=docker/dockerfile:1.7
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# kopiuj tylko csproj (lepszy cache)
-COPY ["Trecom.Backend/Trecom.Backend.csproj", "Trecom.Backend/"]
-# (jeœli masz solution)
-# COPY ["Trecom.sln", "./"]
+# 1) Kopiuj tylko csproj i zrób restore (lepszy cache)
+COPY Trecom.Backend/Trecom.Backend.csproj Trecom.Backend/
+RUN ls -la && ls -la Trecom.Backend || true
+RUN dotnet restore Trecom.Backend/Trecom.Backend.csproj -v m
 
-RUN ls -la && ls -la Trecom.Backend || true  # diagnostyka: czy csproj jest w kontenerze?
-RUN dotnet restore "Trecom.Backend/Trecom.Backend.csproj"
-
-# dopiero teraz reszta Ÿróde³
+# 2) Kopiuj resztê i publikuj
 COPY . .
 WORKDIR /src/Trecom.Backend
 RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 
+# 3) Finalny obraz
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/publish .
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
 ENTRYPOINT ["dotnet", "Trecom.Backend.dll"]

@@ -1,30 +1,45 @@
-**/.classpath
-**/.dockerignore
-**/.env
-**/.git
-**/.gitignore
-**/.project
-**/.settings
-**/.toolstarget
-**/.vs
-**/.vscode
-**/*.*proj.user
+# Git – wyrzuć całe repo, zostaw same .gitignore
+**/.git/
+!**/.gitignore
+
+# Śmieci systemowe
+**/.DS_Store
+**/Thumbs.db
+
+# .NET/IDE
+**/bin/
+**/obj/
+**/artifacts/
+**/.vs/
+**/.vscode/
+**/.idea/
+**/*.user
+**/*.suo
+**/*.cache
 **/*.dbmdl
+**/.toolstarget
 **/*.jfm
-**/azds.yaml
-**/bin
-**/charts
-**/docker-compose*
-**/Dockerfile*
+
+# Testy / coverage
+**/TestResults/
+**/coverage/
+**/.coverage
+**/.coverage.*
+
+# Node (jeśli masz front)
 **/node_modules
 **/npm-debug.log
-**/obj
-**/secrets.dev.yaml
-**/values.dev.yaml
+
+# Inne duże / zbędne w obrazie
+**/charts
+
+# Lokalne sekrety/konfiguracje
+**/.env
+**/secrets*.json
+**/secrets*.yaml
+**/secrets*.yml
+# **/appsettings.*.local.json  (odkomentuj, jeśli używasz lokalnych)
+
+# Repo pliki, których nie potrzebujesz w obrazie
 LICENSE
 README.md
-!**/.gitignore
-!.git/HEAD
-!.git/config
-!.git/packed-refs
-!.git/refs/heads/**
