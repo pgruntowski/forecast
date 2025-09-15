@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Trecom.Backend.Models;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
 namespace Trecom.Backend.Persistence.Config;
 
 public sealed class UserConfiguration : IEntityTypeConfiguration<User>
