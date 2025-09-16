@@ -31,31 +31,5 @@
     <Folder Include="Migrations\" />
     <Folder Include="ClientApp\" />
   </ItemGroup>
-  <!-- === SPA build & copy (tylko przy Publish) === -->
-  <PropertyGroup>
-    <!-- Katalog z frontendem -->
-    <SpaRoot>ClientApp\</SpaRoot>
-  </PropertyGroup>
 
-  <!-- 1) Zbuduj fronta (npm ci + npm run build) przed publikacją -->
-  <Target Name="BuildSpa" BeforeTargets="Publish"
-          Condition="Exists('$(SpaRoot)package.json')">
-    <Message Importance="high" Text="Building SPA from $(SpaRoot)" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm ci" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
-  </Target>
-
-  <!-- 2) Zbierz wygenerowane pliki z dist/ -->
-  <ItemGroup Condition="Exists('$(SpaRoot)dist')">
-    <SpaDist Include="$(SpaRoot)dist\**\*" />
-  </ItemGroup>
-
-  <!-- 3) Skopiuj je do wwwroot/ po publikacji -->
-  <Target Name="CopySpaDist" AfterTargets="Publish"
-          Condition="@(SpaDist->Count()) &gt; 0">
-    <RemoveDir Directories="wwwroot" />
-    <MakeDir Directories="wwwroot" />
-    <Copy SourceFiles="@(SpaDist)"
-          DestinationFiles="@(SpaDist->'wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
-  </Target>
 </Project>
