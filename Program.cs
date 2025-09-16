@@ -170,6 +170,11 @@ app.MapGet("/api/me", [Authorize] (ClaimsPrincipal user) => new
 app.MapGet("/debug/claims", [Authorize] (ClaimsPrincipal u)
     => u.Claims.Select(c => new { c.Type, c.Value }));
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+app.MapControllers();
+app.MapFallbackToFile("/index.html");
+
 app.Run();
 
 // ——— Helpery ———
