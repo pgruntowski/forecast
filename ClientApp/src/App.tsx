@@ -343,7 +343,7 @@ function ProjectsPage({ me }: { me: { AppUserId?: string; Roles: string[] } }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const isAM = me.Roles.includes("AM");
+   // const isAM = me.Roles.includes("AM");
     const isLeader = me.Roles.includes("TeamLeader");
     const isBoard = me.Roles.includes("Board") || me.Roles.includes("Admin") || me.Roles.includes("SuperAdmin");
 
